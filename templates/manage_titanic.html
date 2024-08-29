@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Manage Titanic Data</h1>
+
+<!-- فرم ایجاد رکورد جدید -->
+<div class="form-container">
+    <form method="post">
+        {% csrf_token %}
+        <h2>Create Titanic Data</h2>
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Save</button>
+    </form>
+</div>
+
+<!-- جدول برای نمایش داده‌ها -->
+<h2>Titanic Data</h2>
+<table class="data-table">
+    <thead>
+        <tr>
+            <th>Passenger ID</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Survived</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in titanic_data %}
+        <tr>
+            <td>{{ entry.passenger_id }}</td>
+            <td>{{ entry.name }}</td>
+            <td>{{ entry.age }}</td>
+            <td>{{ entry.sex }}</td>
+            <td>{{ entry.survived }}</td>
+            <td>
+               
+                    <a href="{% url 'edit_titanic' entry.id %}" class="edit-button">Edit</a>
+                    <a href="{% url 'delete_titanic' entry.id %}" class="delete-button">Delete</a>
+                
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- فرم ویرایش به صورت مخفی در ابتدا نمایش داده می‌شود -->
+<div id="edit-form-container" class="form-container" style="display: none;">
+    <h2>Edit Titanic Data</h2>
+    <form method="post" id="edit-form">
+        {% csrf_token %}
+        <input type="hidden" name="edit_id" id="edit-id">
+        {% if edit_form %}
+            {{ edit_form.as_p }}
+        {% endif %}
+        <button type="submit" class="submit-button">Update</button>
+    </form>
+</div>
+<script>
+    function showEditForm(entryId) {
+        console.log(1)
+        document.getElementById('edit-form-container').style.display = 'block';
+        document.getElementById('edit-id').value = entryId;
+        
+        // می‌توانید فرم را با استفاده از AJAX به‌روزرسانی کنید تا فیلدهای فعلی را نمایش دهد
+        // در حال حاضر، فرم خالی است و بعد از کلیک روی "Save"، رکورد را به‌روزرسانی می‌کند
+    }
+</script>
+{% endblock %}
+
+<!-- استایل‌های CSS -->
+<style>
+    .form-container {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+    }
+
+    .submit-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+        background-color: #0056b3;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
+
+    .data-table th, .data-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .data-table th {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+    .data-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .data-table tr:hover {
+        background-color: #ddd;
+    }
+
+    .edit-button, .delete-button {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    .delete-button {
+        color: #ff0000;
+    }
+
+    .edit-button:hover, .delete-button:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<!-- جاوااسکریپت برای نمایش فرم ویرایش -->
+

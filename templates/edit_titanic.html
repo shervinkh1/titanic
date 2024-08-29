@@ -1,0 +1,46 @@
+<!-- titanic_app/templates/titanic_app/edit_titanic.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Edit Titanic Data - Passenger ID: {{ entry.passenger_id }}</h1>
+
+<div class="form-container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="submit-button">Update</button>
+        <a href="{% url 'manage_titanic' %}" class="cancel-button">Cancel</a>
+    </form>
+</div>
+
+<style>
+    .form-container {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        max-width: 600px;
+        margin: 0 auto;
+        margin-bottom: 2rem;
+    }
+
+    .submit-button, .cancel-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-decoration: none;
+        margin-right: 10px;
+    }
+
+    .submit-button:hover, .cancel-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}
+
+<!-- استایل‌های CSS -->
