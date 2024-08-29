@@ -28,8 +28,7 @@
 
 ### تنظیمات پایگاه داده را در titanic_app/settings.py به‌روزرسانی کنید. برای مثال، برای PostgreSQL:
 
->python
-Copy code
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
