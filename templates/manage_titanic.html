@@ -1,20 +1,86 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Manage Titanic Data</h1>
+<h1 style="text-align: center; margin-bottom: 20px;">Manage Titanic Data</h1>
 
-<!-- فرم ایجاد رکورد جدید -->
 <div class="form-container">
-    <form method="post">
+    <!-- فرم برای عملیات CRUD -->
+    <form method="post" class="titanic-form">
         {% csrf_token %}
-        <h2>Create Titanic Data</h2>
-        {{ form.as_p }}
-        <button type="submit" class="submit-button">Save</button>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="passenger_id">{{ form.passenger_id.label }}</label>
+                {{ form.passenger_id }}
+            </div>
+
+            <div class="form-group">
+                <label for="name">{{ form.name.label }}</label>
+                {{ form.name }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="age">{{ form.age.label }}</label>
+                {{ form.age }}
+            </div>
+
+            <div class="form-group">
+                <label for="sex">{{ form.sex.label }}</label>
+                {{ form.sex }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="sibsp">{{ form.sibsp.label }}</label>
+                {{ form.sibsp }}
+            </div>
+
+            <div class="form-group">
+                <label for="parch">{{ form.parch.label }}</label>
+                {{ form.parch }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="ticket">{{ form.ticket.label }}</label>
+                {{ form.ticket }}
+            </div>
+
+            <div class="form-group">
+                <label for="fare">{{ form.fare.label }}</label>
+                {{ form.fare }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="cabin">{{ form.cabin.label }}</label>
+                {{ form.cabin }}
+            </div>
+
+            <div class="form-group">
+                <label for="embarked">{{ form.embarked.label }}</label>
+                {{ form.embarked }}
+            </div>
+        </div>
+
+        <div class="checkbox-group">
+            {{ form.survived }} 
+            <label for="survived">{{ form.survived.label }}</label>
+        </div>
+
+        <div class="form-row">
+            <button type="submit" class="submit-button">Save</button>
+        </div>
     </form>
 </div>
 
-<!-- جدول برای نمایش داده‌ها -->
-<h2>Titanic Data</h2>
-<table class="data-table">
+<!-- جدول نمایش داده‌های تایتانیک -->
+<h2 style="text-align: center; margin-top: 40px;">Titanic Data</h2>
+<table class="titanic-table">
     <thead>
         <tr>
             <th>Passenger ID</th>
@@ -27,115 +93,131 @@
     </thead>
     <tbody>
         {% for entry in titanic_data %}
-        <tr>
+        <tr class="{% cycle 'row-light' 'row-dark' %}">
             <td>{{ entry.passenger_id }}</td>
             <td>{{ entry.name }}</td>
             <td>{{ entry.age }}</td>
             <td>{{ entry.sex }}</td>
             <td>{{ entry.survived }}</td>
-            <td>
-               
-                    <a href="{% url 'edit_titanic' entry.id %}" class="edit-button">Edit</a>
-                    <a href="{% url 'delete_titanic' entry.id %}" class="delete-button">Delete</a>
-                
+            <td style="display: flex;">
+                <a href="{% url 'edit_titanic' entry.passenger_id %}" class="edit-button">Edit</a>
+                <a href="{% url 'delete_titanic' entry.passenger_id %}" class="delete-button">Delete</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
-
-<!-- فرم ویرایش به صورت مخفی در ابتدا نمایش داده می‌شود -->
-<div id="edit-form-container" class="form-container" style="display: none;">
-    <h2>Edit Titanic Data</h2>
-    <form method="post" id="edit-form">
-        {% csrf_token %}
-        <input type="hidden" name="edit_id" id="edit-id">
-        {% if edit_form %}
-            {{ edit_form.as_p }}
-        {% endif %}
-        <button type="submit" class="submit-button">Update</button>
-    </form>
-</div>
-<script>
-    function showEditForm(entryId) {
-        console.log(1)
-        document.getElementById('edit-form-container').style.display = 'block';
-        document.getElementById('edit-id').value = entryId;
-        
-        // می‌توانید فرم را با استفاده از AJAX به‌روزرسانی کنید تا فیلدهای فعلی را نمایش دهد
-        // در حال حاضر، فرم خالی است و بعد از کلیک روی "Save"، رکورد را به‌روزرسانی می‌کند
-    }
-</script>
-{% endblock %}
-
-<!-- استایل‌های CSS -->
 <style>
-    .form-container {
-        background-color: #fff;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        margin: 0 auto;
-        margin-bottom: 2rem;
-    }
+    /* استایل‌های کلی فرم */
+.form-container {
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-width: 700px; /* بزرگ‌تر کردن فرم */
+}
 
-    .submit-button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
 
-    .submit-button:hover {
-        background-color: #0056b3;
-    }
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
 
-    .data-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 0 auto;
-        max-width: 1200px;
-    }
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
 
-    .data-table th, .data-table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
 
-    .data-table th {
-        background-color: #007bff;
-        color: #fff;
-    }
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
 
-    .data-table tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
+.checkbox-group label {
+    margin-left: 8px;
+}
 
-    .data-table tr:hover {
-        background-color: #ddd;
-    }
+.submit-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto; /* وسط‌چین کردن دکمه */
+    display: block;
+}
 
-    .edit-button, .delete-button {
-        color: #007bff;
-        text-decoration: none;
-        font-weight: bold;
-        margin-right: 10px;
-    }
+.submit-button:hover {
+    background-color: #45a049;
+}
 
-    .delete-button {
-        color: #ff0000;
-    }
+/* استایل‌های جدول */
+.titanic-table {
+    width: 80%;
+    margin: 0 auto; /* وسط‌چین کردن جدول */
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 
-    .edit-button:hover, .delete-button:hover {
-        text-decoration: underline;
-    }
+.titanic-table th, .titanic-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.titanic-table th {
+    background-color: #f2f2f2;
+}
+
+.row-light {
+    background-color: #f9f9f9;
+}
+
+.row-dark {
+    background-color: #e9e9e9;
+}
+
+.edit-button, .delete-button {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.edit-button {
+    background-color: #008CBA;
+}
+
+.delete-button {
+    background-color: #f44336;
+}
+
+.edit-button:hover {
+    background-color: #007B9E;
+}
+
+.delete-button:hover {
+    text-decoration: none;
+    background-color: #e31b0c;
+}
+
 </style>
-
-<!-- جاوااسکریپت برای نمایش فرم ویرایش -->
-
+{% endblock %}

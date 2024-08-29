@@ -4,16 +4,197 @@
 {% block content %}
 <h1>Edit Titanic Data - Passenger ID: {{ entry.passenger_id }}</h1>
 
+
 <div class="form-container">
-    <form method="post">
+    <!-- فرم برای عملیات CRUD -->
+    <form method="post" class="titanic-form">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="submit-button">Update</button>
-        <a href="{% url 'manage_titanic' %}" class="cancel-button">Cancel</a>
+        
+        <div class="form-row">
+            <div class="form-group">
+                <label for="passenger_id">{{ form.passenger_id.label }}</label>
+                {{ form.passenger_id }}
+            </div>
+
+            <div class="form-group">
+                <label for="name">{{ form.name.label }}</label>
+                {{ form.name }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="age">{{ form.age.label }}</label>
+                {{ form.age }}
+            </div>
+
+            <div class="form-group">
+                <label for="sex">{{ form.sex.label }}</label>
+                {{ form.sex }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="sibsp">{{ form.sibsp.label }}</label>
+                {{ form.sibsp }}
+            </div>
+
+            <div class="form-group">
+                <label for="parch">{{ form.parch.label }}</label>
+                {{ form.parch }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="ticket">{{ form.ticket.label }}</label>
+                {{ form.ticket }}
+            </div>
+
+            <div class="form-group">
+                <label for="fare">{{ form.fare.label }}</label>
+                {{ form.fare }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="cabin">{{ form.cabin.label }}</label>
+                {{ form.cabin }}
+            </div>
+
+            <div class="form-group">
+                <label for="embarked">{{ form.embarked.label }}</label>
+                {{ form.embarked }}
+            </div>
+        </div>
+
+        <div class="checkbox-group">
+            {{ form.survived }} 
+            <label for="survived">{{ form.survived.label }}</label>
+        </div>
+        <div style="margin-top: 10px;">
+            <button type="submit" class="cancel-button">Update</button>
+            <a href="{% url 'manage_titanic' %}" class="cancel-button">Cancel</a>
+        </div>
     </form>
 </div>
 
 <style>
+    
+    /* استایل‌های کلی فرم */
+.form-container {
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    max-width: 700px; /* بزرگ‌تر کردن فرم */
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.checkbox-group label {
+    margin-left: 8px;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto; /* وسط‌چین کردن دکمه */
+    display: block;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+/* استایل‌های جدول */
+.titanic-table {
+    width: 80%;
+    margin: 0 auto; /* وسط‌چین کردن جدول */
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.titanic-table th, .titanic-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.titanic-table th {
+    background-color: #f2f2f2;
+}
+
+.row-light {
+    background-color: #f9f9f9;
+}
+
+.row-dark {
+    background-color: #e9e9e9;
+}
+
+.edit-button, .delete-button {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    margin-right: 5px;
+}
+
+.edit-button {
+    background-color: #008CBA;
+}
+
+.delete-button {
+    background-color: #f44336;
+}
+
+.edit-button:hover {
+    background-color: #007B9E;
+}
+
+.delete-button:hover {
+    text-decoration: none;
+    background-color: #e31b0c;
+}
+
+
     .form-container {
         background-color: #fff;
         padding: 2rem;
