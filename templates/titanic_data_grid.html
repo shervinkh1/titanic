@@ -1,9 +1,8 @@
 {% extends 'base.html' %}
-
+{% block title %}Titanic Data Grid{% endblock %}
 {% block content %}
 <h1 style="text-align: center; margin-bottom: 20px;">Titanic Data Grid</h1>
 
-<!-- جستجو و مرتب‌سازی ساده برای داده‌های تایتانیک -->
 <div class="datagrid-container">
     <table class="titanic-datagrid">
         <thead>
@@ -79,7 +78,7 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Helper function to debounce search input
+
         function debounce(func, delay) {
             let timeoutId;
             return function(...args) {
@@ -88,7 +87,6 @@
             };
         }
 
-        // Function to add filtering functionality
         document.querySelectorAll('.search').forEach((input, index) => {
             input.addEventListener('input', debounce(function() {
                 const searchText = this.value.toLowerCase();
@@ -98,23 +96,22 @@
                     const cellText = row.children[index].innerText.toLowerCase();
                     row.style.display = cellText.includes(searchText) ? '' : 'none';
                 });
-            }, 300)); // Debounce delay
+            }, 300)); 
         });
     });
 </script>
 
 <style>
-/* استایل‌های DataGrid */
 .datagrid-container {
     margin: 20px auto;
     width: 100%;
     max-width: 1300px;
-    height: 600px; /* ارتفاع مشخص برای container */
-    overflow-y: auto; /* اسکرول عمودی */
+    height: 600px; 
+    overflow-y: auto; 
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff; /* پس‌زمینه سفید */
+    background-color: #ffffff; 
 }
 
 .titanic-datagrid {
@@ -139,7 +136,7 @@
 .titanic-datagrid th, .titanic-datagrid td {
     border: 1px solid #ddd;
     padding: 12px;
-    vertical-align: middle; /* مرکزچین کردن محتوای سلول */
+    vertical-align: middle; 
 }
 
 .titanic-datagrid tr:nth-child(even) {
@@ -151,7 +148,7 @@
 }
 
 .titanic-datagrid tr:hover {
-    background-color: #e9ecef; /* رنگ پس‌زمینه هنگام حرکت ماوس */
+    background-color: #e9ecef; 
     transition: background-color 0.3s ease;
 }
 

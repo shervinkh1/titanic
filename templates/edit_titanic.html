@@ -1,11 +1,9 @@
-<!-- titanic_app/templates/titanic_app/edit_titanic.html -->
 {% extends 'base.html' %}
 
 {% block content %}
 <h1>Edit Titanic Data - Passenger ID: {{ entry.passenger_id }}</h1>
 
 <div class="form-container">
-    <!-- فرم برای عملیات CRUD -->
     <form method="post" class="titanic-form">
         {% csrf_token %}
         
@@ -87,70 +85,4 @@
     </form>
 </div>
 
-<style>
-/* استایل‌های کلی فرم */
-.form-container {
-    margin: 20px auto;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    max-width: 700px; /* بزرگ‌تر کردن فرم */
-    background-color: #fff;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.form-row {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    width: 48%;
-}
-
-.form-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-.form-group input[type="text"],
-.form-group input[type="number"],
-.form-group select {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.checkbox-group {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.checkbox-group label {
-    margin-left: 8px;
-}
-
-.btn {
-    font-size: 15px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-right: 10px;
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-    background-color: #0056b3;
-}
-</style>
 {% endblock %}

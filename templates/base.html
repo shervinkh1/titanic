@@ -1,137 +1,13 @@
-<!-- titanic_app/templates/base.html -->
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Titanic App{% endblock %}</title>
-    
-    <!-- استایل‌های CSS -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #007bff;
-            padding: 1rem 0;
-            color: white;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
-        }
-        nav ul li a:hover {
-            background-color: #0056b3;
-        }
-        main {
-            padding: 2rem;
-            max-width: 1300px;
-            margin: 0 auto;
-            background-color: white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-        footer {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 1rem 0;
-            /* position: fixed; */
-            width: 100%;
-            bottom: 0;
-        }
-        
-    .form-container {
-        background-color: #fff;
-        padding: 2rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        max-width: 600px;
-        margin: 0 auto;
-        margin-bottom: 2rem;
-    }
-    
-    .submit-button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .submit-button:hover {
-        background-color: #0056b3;
-    }
-
-    .data-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 0 auto;
-        max-width: 1200px;
-    }
-
-    .data-table th, .data-table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-    .data-table th {
-        background-color: #007bff;
-        color: #fff;
-    }
-
-    .data-table tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    .data-table tr:hover {
-        background-color: #ddd;
-    }
-
-    .delete-button {
-        color: #e32323;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .delete-button:hover {
-        text-decoration: underline;
-    }
-
-
-    </style>
-
-    <!-- اضافه کردن فایل‌های CSS یا جاوااسکریپت اضافی -->
-    {% block extra_head %}
-    {% endblock %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-    <!-- هدر سایت -->
     <header style="position: fixed;width: 100%;top: 0;">
         <nav>
             <ul>
@@ -142,21 +18,15 @@
         </nav>
     </header>
 
-    <!-- محتوای اصلی صفحه -->
     <main style="margin-top: 70px;">
         {% block content %}
-        <!-- محتوای صفحه‌های فرزند در اینجا قرار می‌گیرد -->
         {% endblock %}
     </main>
 
-    <!-- فوتر سایت -->
     <footer style="margin-top: 20px;">
         <p>Titanic App</p>
     </footer>
 
-    <!-- فایل‌های جاوااسکریپت -->
-
-    <!-- اضافه کردن فایل‌های جاوااسکریپت اضافی -->
     {% block extra_js %}
     {% endblock %}
 </body>

@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
+{% block title %}Manage Titanic Data{% endblock %}
 {% block content %}
 <h1 style="text-align: center; margin-bottom: 20px;">Manage Titanic Data</h1>
 
 <div class="form-container">
-    <!-- فرم برای عملیات CRUD -->
     <form method="post" class="titanic-form">
         {% csrf_token %}
         
@@ -84,7 +84,6 @@
     </form>
 </div>
 
-<!-- جدول نمایش داده‌های تایتانیک -->
 <h2 style="text-align: center; margin-top: 40px;">Titanic Data</h2>
 <div class="titanic-table-container">
     <table class="titanic-table">
@@ -121,18 +120,18 @@
 </div>
 <style>
     .titanic-table-container {
-    max-height: 600px; /* ارتفاع حداکثر برای جدول */
-    overflow-y: auto;  /* اسکرول عمودی */
+    max-height: 600px; 
+    overflow-y: auto;  
     position: relative;
 }
-    /* استایل‌های کلی فرم */
+
 .form-container {
     margin: 20px auto;
     padding: 15px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
-    max-width: 700px; /* بزرگ‌تر کردن فرم */
+    max-width: 700px; 
 }
 
 .form-row {
@@ -177,7 +176,7 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 0 auto; /* وسط‌چین کردن دکمه */
+    margin: 0 auto; 
     display: block;
 }
 
@@ -185,15 +184,14 @@
     background-color: #45a049;
 }
 
-/* استایل‌های جدول */
-/* استایل‌های جدول */
+
 .titanic-table-container {
-    max-height: 600px; /* ارتفاع حداکثر برای جدول */
-    overflow-y: auto;  /* اسکرول عمودی */
-    overflow-x: auto;  /* اسکرول افقی (در صورت نیاز) */
-    border: 1px solid #ddd; /* حاشیه دور جدول */
-    margin: 20px auto; /* تنظیم موقعیت جدول */
-    width: 95%; /* تنظیم عرض جدول */
+    max-height: 600px; 
+    overflow-y: auto;  
+    overflow-x: auto;  
+    border: 1px solid #ddd; 
+    margin: 20px auto; 
+    width: 95%; 
     position: relative;
 }
 
@@ -204,30 +202,30 @@
 }
 
 .titanic-table thead th {
-    position: -webkit-sticky; /* برای مرورگرهای WebKit */
+    position: -webkit-sticky; 
     position: sticky;
-    top: 0; /* موقعیت هدر در بالای جدول */
+    top: 0; 
     background-color: #f2f2f2;
-    z-index: 10; /* برای نمایش هدر در بالای محتوا */
+    z-index: 10;
     border-bottom: 2px solid #ddd;
 }
 
 .titanic-table th, .titanic-table td {
     border: 1px solid #ddd;
     padding: 12px;
-    text-align: center; /* تنظیم تراز متن */
+    text-align: center;
 }
 
 .titanic-table tr:nth-child(even) {
-    background-color: #f9f9f9; /* ردیف‌های خاکستری روشن */
+    background-color: #f9f9f9; 
 }
 
 .titanic-table tr:nth-child(odd) {
-    background-color: #ffffff; /* ردیف‌های سفید */
+    background-color: #ffffff;
 }
 
 .titanic-table tr:hover {
-    background-color: #ddd; /* رنگ پس‌زمینه هنگام حرکت ماوس */
+    background-color: #ddd; 
 }
 
 .edit-button, .delete-button {
@@ -239,11 +237,11 @@
 }
 
 .edit-button {
-    background-color: #4CAF50; /* رنگ پس‌زمینه سبز */
+    background-color: #4CAF50; 
 }
 
 .delete-button {
-    background-color: #f44336; /* رنگ پس‌زمینه قرمز */
+    background-color: #f44336; 
 }
 
 
