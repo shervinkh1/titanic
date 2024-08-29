@@ -32,8 +32,7 @@ ALLOWED_HOSTS = []
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # برای جمع‌آوری فایل‌های استاتیک در محیط‌های تولیدی
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'  # مسیر ذخیره‌سازی فایل‌های آپلود شده
+
 
 # Application definition
 

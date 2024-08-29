@@ -67,9 +67,15 @@
             </div>
         </div>
 
-        <div class="checkbox-group">
-            {{ form.survived }} 
-            <label for="survived">{{ form.survived.label }}</label>
+        <div class="form-row">
+            <div class="checkbox-group">
+                {{ form.survived }} 
+                <label for="survived">{{ form.survived.label }}</label>
+            </div>
+            <div class="form-group">
+                <label for="pclass">{{ form.pclass.label }}</label>
+                {{ form.pclass }} 
+            </div>
         </div>
 
         <div class="form-row">
@@ -80,34 +86,45 @@
 
 <!-- جدول نمایش داده‌های تایتانیک -->
 <h2 style="text-align: center; margin-top: 40px;">Titanic Data</h2>
-<table class="titanic-table">
-    <thead>
-        <tr>
-            <th>Passenger ID</th>
-            <th>Name</th>
-            <th>Age</th>
-            <th>Sex</th>
-            <th>Survived</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for entry in titanic_data %}
-        <tr class="{% cycle 'row-light' 'row-dark' %}">
-            <td>{{ entry.passenger_id }}</td>
-            <td>{{ entry.name }}</td>
-            <td>{{ entry.age }}</td>
-            <td>{{ entry.sex }}</td>
-            <td>{{ entry.survived }}</td>
-            <td style="display: flex;">
-                <a href="{% url 'edit_titanic' entry.passenger_id %}" class="edit-button">Edit</a>
-                <a href="{% url 'delete_titanic' entry.passenger_id %}" class="delete-button">Delete</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="titanic-table-container">
+    <table class="titanic-table">
+        <thead>
+            <tr>
+                <th>Passenger ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Sex</th>
+                <th>Survived</th>
+                <th>Ticket</th>
+                <th>Cabin</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in titanic_data %}
+            <tr class="{% cycle 'row-light' 'row-dark' %}">
+                <td>{{ entry.passenger_id }}</td>
+                <td>{{ entry.name }}</td>
+                <td>{{ entry.age }}</td>
+                <td>{{ entry.sex }}</td>
+                <td>{{ entry.survived }}</td>
+                <td>{{ entry.ticket }}</td>
+                <td>{{ entry.cabin }}</td>
+                <td style="display: flex; justify-content: center;">
+                    <a href="{% url 'edit_titanic' entry.passenger_id %}" class="edit-button">Edit</a>
+                    <a href="{% url 'delete_titanic' entry.passenger_id %}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 <style>
+    .titanic-table-container {
+    max-height: 600px; /* ارتفاع حداکثر برای جدول */
+    overflow-y: auto;  /* اسکرول عمودی */
+    position: relative;
+}
     /* استایل‌های کلی فرم */
 .form-container {
     margin: 20px auto;
@@ -169,22 +186,66 @@
 }
 
 /* استایل‌های جدول */
+/* استایل‌های جدول */
+.titanic-table-container {
+    max-height: 600px; /* ارتفاع حداکثر برای جدول */
+    overflow-y: auto;  /* اسکرول عمودی */
+    overflow-x: auto;  /* اسکرول افقی (در صورت نیاز) */
+    border: 1px solid #ddd; /* حاشیه دور جدول */
+    margin: 20px auto; /* تنظیم موقعیت جدول */
+    width: 95%; /* تنظیم عرض جدول */
+    position: relative;
+}
+
 .titanic-table {
-    width: 80%;
-    margin: 0 auto; /* وسط‌چین کردن جدول */
+    width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    position: relative;
+}
+
+.titanic-table thead th {
+    position: -webkit-sticky; /* برای مرورگرهای WebKit */
+    position: sticky;
+    top: 0; /* موقعیت هدر در بالای جدول */
+    background-color: #f2f2f2;
+    z-index: 10; /* برای نمایش هدر در بالای محتوا */
+    border-bottom: 2px solid #ddd;
 }
 
 .titanic-table th, .titanic-table td {
     border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
+    padding: 12px;
+    text-align: center; /* تنظیم تراز متن */
 }
 
-.titanic-table th {
-    background-color: #f2f2f2;
+.titanic-table tr:nth-child(even) {
+    background-color: #f9f9f9; /* ردیف‌های خاکستری روشن */
 }
+
+.titanic-table tr:nth-child(odd) {
+    background-color: #ffffff; /* ردیف‌های سفید */
+}
+
+.titanic-table tr:hover {
+    background-color: #ddd; /* رنگ پس‌زمینه هنگام حرکت ماوس */
+}
+
+.edit-button, .delete-button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+}
+
+.edit-button {
+    background-color: #4CAF50; /* رنگ پس‌زمینه سبز */
+}
+
+.delete-button {
+    background-color: #f44336; /* رنگ پس‌زمینه قرمز */
+}
+
 
 .row-light {
     background-color: #f9f9f9;

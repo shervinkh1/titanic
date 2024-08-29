@@ -23,6 +23,7 @@ class TitanicForm(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'passenger_id': forms.NumberInput(attrs={'class': 'form-control'}),
+            'pclass': forms.NumberInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'age': forms.NumberInput(attrs={'class': 'form-control'}),
             'sibsp': forms.NumberInput(attrs={'class': 'form-control'}),

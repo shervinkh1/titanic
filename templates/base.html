@@ -45,7 +45,7 @@
         }
         main {
             padding: 2rem;
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             background-color: white;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -132,26 +132,26 @@
 </head>
 <body>
     <!-- هدر سایت -->
-    <header>
+    <header style="position: fixed;width: 100%;top: 0;">
         <nav>
             <ul>
-                <li><a href="/upload_excel">Upload Excel</a></li>
+                <li><a href="/">Upload Excel</a></li>
                 <li><a href="/manage_titanic">Manage Titanic Data</a></li>
-                <li><a href="/">View Titanic Data</a></li>
+                <li><a href="/titanic_data_grid">View Titanic Data</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- محتوای اصلی صفحه -->
-    <main>
+    <main style="margin-top: 70px;">
         {% block content %}
         <!-- محتوای صفحه‌های فرزند در اینجا قرار می‌گیرد -->
         {% endblock %}
     </main>
 
     <!-- فوتر سایت -->
-    <footer>
-        <p>&copy; 2024 Titanic App. All rights reserved.</p>
+    <footer style="margin-top: 20px;">
+        <p>Titanic App</p>
     </footer>
 
     <!-- فایل‌های جاوااسکریپت -->

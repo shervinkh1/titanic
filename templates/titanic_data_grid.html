@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 style="text-align: center; margin-bottom: 20px;">Titanic Data Grid</h1>
+
+<!-- جستجو و مرتب‌سازی ساده برای داده‌های تایتانیک -->
+<div class="datagrid-container">
+    <table class="titanic-datagrid">
+        <thead>
+            <tr>
+                <th>Passenger ID
+                    <input type="text" id="id" placeholder="id" class="search">
+                </th>
+                <th>Survived
+                    <input type="text" id="Survived" placeholder="Survived" class="search">
+                </th>
+                <th>Class
+                    <input type="text" id="Class" placeholder="Class" class="search">
+                </th>
+                <th>Name
+                    <input type="text" id="Name" placeholder="Name" class="search">
+                </th>
+                <th>Sex
+                    <input type="text" id="Sex" placeholder="Sex" class="search">
+                </th>
+                <th>Age
+                    <input type="text" id="Age" placeholder="Age" class="search">
+                </th>
+                <th>SibSp
+                    <input type="text" id="SibSp" placeholder="SibSp" class="search">
+                </th>
+                <th>Parch
+                    <input type="text" id="Parch" placeholder="Parch" class="search">
+                </th>
+                <th>Ticket
+                    <input type="text" id="Ticket" placeholder="Ticket" class="search">
+                </th>
+                <th>Fare
+                    <input type="text" id="Fare" placeholder="Fare" class="search">
+                </th>
+                <th>Cabin
+                    <input type="text" id="Cabin" placeholder="Cabin" class="search">
+                </th>
+                <th>Embarked
+                    <input type="text" id="Embarked" placeholder="Embarked" class="search">
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in titanic_data %}
+            <tr>
+                <td>{{ entry.passenger_id }}</td>
+                <td>{{ entry.survived }}</td>
+                <td>{{ entry.pclass }}</td>
+                <td>{{ entry.name }}</td>
+                <td>{{ entry.sex }}</td>
+                <td>{{ entry.age }}</td>
+                <td>{{ entry.sibsp }}</td>
+                <td>{{ entry.parch }}</td>
+                <td>{{ entry.ticket }}</td>
+                <td>{{ entry.fare }}</td>
+                <td>{{ entry.cabin }}</td>
+                <td>
+                    {% if entry.embarked == 'C' %}
+                        Cherbourg
+                    {% elif entry.embarked == 'Q' %}
+                        Queenstown
+                    {% elif entry.embarked == 'S' %}
+                        Southampton
+                    {% else %}
+                        {{ entry.embarked }}
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Helper function to debounce search input
+        function debounce(func, delay) {
+            let timeoutId;
+            return function(...args) {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+
+        // Function to add filtering functionality
+        document.querySelectorAll('.search').forEach((input, index) => {
+            input.addEventListener('input', debounce(function() {
+                const searchText = this.value.toLowerCase();
+                const tableRows = document.querySelectorAll('.titanic-datagrid tbody tr');
+
+                tableRows.forEach(row => {
+                    const cellText = row.children[index].innerText.toLowerCase();
+                    row.style.display = cellText.includes(searchText) ? '' : 'none';
+                });
+            }, 300)); // Debounce delay
+        });
+    });
+</script>
+
+<style>
+/* استایل‌های DataGrid */
+.datagrid-container {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 1300px;
+    height: 600px; /* ارتفاع مشخص برای container */
+    overflow-y: auto; /* اسکرول عمودی */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* پس‌زمینه سفید */
+}
+
+.titanic-datagrid {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    position: relative;
+}
+
+.titanic-datagrid thead th {
+    position: sticky;
+    top: 0;
+    background-color: #007BFF;
+    color: white;
+    z-index: 10;
+    border-bottom: 2px solid #0056b3;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.titanic-datagrid th, .titanic-datagrid td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    vertical-align: middle; /* مرکزچین کردن محتوای سلول */
+}
+
+.titanic-datagrid tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.titanic-datagrid tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.titanic-datagrid tr:hover {
+    background-color: #e9ecef; /* رنگ پس‌زمینه هنگام حرکت ماوس */
+    transition: background-color 0.3s ease;
+}
+
+.search {
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    height: 30px;
+    padding: 2px;
+    font-size: 16px;
+    color: black;
+    background-color: whitesmoke;
+    border: 2px solid #03e9f4;
+    border-radius: 5px;
+    transition: opacity 0.3s ease;
+}
+.search:focus {
+    opacity: 1;
+}
+</style>
+
+{% endblock %}

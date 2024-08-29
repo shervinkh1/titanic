@@ -1,25 +1,91 @@
-<!-- titanic_app/templates/titanic_app/upload_excel.html -->
 {% extends 'base.html' %}
 
 {% block title %}Upload Excel{% endblock %}
 
 {% block content %}
-<h1>Upload Excel File</h1>
+<div class="upload-container">
+    <h1 class="upload-title">Upload Excel File</h1>
 
-{% if error %}
-  <div class="alert alert-danger">{{ error }}</div>
-{% endif %}
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
 
-{% if messages %}
-  {% for message in messages %}
+    {% if messages %}
+    {% for message in messages %}
     <div class="alert alert-success">{{ message }}</div>
-  {% endfor %}
-{% endif %}
+    {% endfor %}
+    {% endif %}
 
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <input type="file" name="excel_file" accept=".xlsx, .xls" required>
-  <button type="submit">Upload</button>
-</form>
+    <form method="post" enctype="multipart/form-data" class="upload-form">
+        {% csrf_token %}
+        <input type="file" name="excel_file" accept=".xlsx, .xls" required class="file-input">
+        <button type="submit" class="upload-button">Upload</button>
+    </form>
+</div>
 
+<style>
+    .upload-container {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .upload-title {
+        margin-bottom: 20px;
+        font-size: 24px;
+        color: #333;
+    }
+
+    .alert {
+        margin: 10px 0;
+        padding: 15px;
+        border-radius: 4px;
+        font-size: 14px;
+        color: #fff;
+        text-align: center;
+    }
+
+    .alert-danger {
+        background-color: #f44336; /* قرمز */
+    }
+
+    .alert-success {
+        background-color: #4CAF50; /* سبز */
+    }
+
+    .upload-form {
+        margin-top: 20px;
+    }
+
+    .file-input {
+        display: block;
+        margin: 0 auto 20px;
+        padding: 10px;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+        max-width: 100%;
+        cursor: pointer;
+    }
+
+    .upload-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .upload-button:hover {
+        background-color: #0056b3;
+    }
+</style>
 {% endblock %}

@@ -53,7 +53,7 @@ def upload_excel(request):
     return render(request, 'upload_excel.html')
 
 def manage_titanic(request):
-    titanic_data = Titanic.objects.all()
+    titanic_data = Titanic.objects.all().order_by('passenger_id')
     
     if request.method == 'POST':
         # اگر یک فرم جدید یا به روز رسانی ارسال شد
@@ -94,3 +94,8 @@ def delete_titanic(request, pk):
     titanic_entry.delete()
     messages.success(request, "Entry deleted successfully!")
     return redirect('manage_titanic')
+
+
+def titanic_data_grid(request):
+    titanic_data = Titanic.objects.all()
+    return render(request, 'titanic_data_grid.html', {'titanic_data': titanic_data})
