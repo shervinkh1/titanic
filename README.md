@@ -23,7 +23,7 @@ pip install -r requirements.txt
 اگر requirements.txt وجود ندارد، به صورت دستی وابستگی‌ها را نصب کنید:
 
 
-pip install django psycopg2-binary openpyxl
+>  pip install django psycopg2-binary openpyxl
 پیکربندی پایگاه داده
 
 تنظیمات پایگاه داده را در titanic_app/settings.py به‌روزرسانی کنید. برای مثال، برای PostgreSQL:
