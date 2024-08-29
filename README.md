@@ -4,29 +4,29 @@
 
 
 >python -m venv venv
-محیط مجازی را فعال کنید:
+### محیط مجازی را فعال کنید:
 
-در ویندوز:
+### در ویندوز:
 
 
 >venv\Scripts\activate
-در macOS/Linux:
+### در macOS/Linux:
 
 
 >source venv/bin/activate
-نصب وابستگی‌ها
+## نصب وابستگی‌ها
 
-با استفاده از pip وابستگی‌های مورد نیاز را نصب کنید:
+### با استفاده از pip وابستگی‌های مورد نیاز را نصب کنید:
 
 
 >pip install -r requirements.txt
-اگر requirements.txt وجود ندارد، به صورت دستی وابستگی‌ها را نصب کنید:
+### اگر requirements.txt وجود ندارد، به صورت دستی وابستگی‌ها را نصب کنید:
 
 
 >  pip install django psycopg2-binary openpyxl
-پیکربندی پایگاه داده
+## پیکربندی پایگاه داده
 
-تنظیمات پایگاه داده را در titanic_app/settings.py به‌روزرسانی کنید. برای مثال، برای PostgreSQL:
+### تنظیمات پایگاه داده را در titanic_app/settings.py به‌روزرسانی کنید. برای مثال، برای PostgreSQL:
 
 >python
 Copy code
