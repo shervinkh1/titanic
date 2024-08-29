@@ -6,7 +6,7 @@ from django.db import models
 # from django.db import models
 
 class Titanic(models.Model):
-    passenger_id = models.IntegerField(unique=True)  # نام فیلدها با حروف کوچک
+    passenger_id = models.IntegerField(unique=True,primary_key=True)  # نام فیلدها با حروف کوچک
     survived = models.BooleanField()  # به صورت BooleanField تعریف شود
     pclass = models.IntegerField()
     name = models.CharField(max_length=255)
