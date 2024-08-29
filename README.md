@@ -1,6 +1,6 @@
 ## ایجاد محیط مجازی
 
-برای مدیریت وابستگی‌های پروژه، یک محیط مجازی ایجاد کنید:
+### برای مدیریت وابستگی‌های پروژه، یک محیط مجازی ایجاد کنید:
 
 
 >python -m venv venv
@@ -9,17 +9,17 @@
 در ویندوز:
 
 
-venv\Scripts\activate
+>venv\Scripts\activate
 در macOS/Linux:
 
 
-source venv/bin/activate
+>source venv/bin/activate
 نصب وابستگی‌ها
 
 با استفاده از pip وابستگی‌های مورد نیاز را نصب کنید:
 
 
-pip install -r requirements.txt
+>pip install -r requirements.txt
 اگر requirements.txt وجود ندارد، به صورت دستی وابستگی‌ها را نصب کنید:
 
 
@@ -28,7 +28,7 @@ pip install -r requirements.txt
 
 تنظیمات پایگاه داده را در titanic_app/settings.py به‌روزرسانی کنید. برای مثال، برای PostgreSQL:
 
-python
+>python
 Copy code
 DATABASES = {
     'default': {
@@ -45,29 +45,17 @@ DATABASES = {
 برای راه‌اندازی ساختار پایگاه داده، مایگریشن‌ها را اجرا کنید:
 
 
-python manage.py migrate
+>python manage.py migrate
 ایجاد کاربر مدیر
 
 برای دسترسی به پنل مدیریت Django، یک کاربر مدیر ایجاد کنید:
 
 
-python manage.py createsuperuser
+>python manage.py createsuperuser
 اجرای سرور توسعه
 
 سرور توسعه Django را راه‌اندازی کنید:
 
-python manage.py runserver
+>python manage.py runserver
 مرورگر خود را باز کنید و به http://127.0.0.1:8000/ بروید تا به اپلیکیشن دسترسی پیدا کنید.
 
-استفاده
-آپلود فایل Excel
-
-به صفحه آپلود Excel بروید و فایل Excel شامل داده‌های تایتانیک را آپلود کنید. فایل باید در فرمت .xlsx باشد.
-
-مدیریت داده‌های تایتانیک
-
-به صفحه مدیریت داده‌های تایتانیک بروید تا رکوردهای تایتانیک را مشاهده و ویرایش کنید. می‌توانید رکوردهای جدید اضافه کنید، رکوردهای موجود را ویرایش کنید یا حذف کنید.
-
-مشاهده داده‌های تایتانیک
-
-به صفحه مشاهده داده‌های تایتانیک بروید تا داده‌ها را به صورت جدولی مشاهده کنید. از فیلدهای جستجو برای فیلتر کردن داده‌ها بر اساس ستون‌های مختلف استفاده کنید.
