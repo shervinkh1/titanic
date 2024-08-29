@@ -2,32 +2,27 @@
 
 برای مدیریت وابستگی‌های پروژه، یک محیط مجازی ایجاد کنید:
 
-bash
-Copy code
+
 python -m venv venv
 محیط مجازی را فعال کنید:
 
 در ویندوز:
 
-bash
-Copy code
+
 venv\Scripts\activate
 در macOS/Linux:
 
-bash
-Copy code
+
 source venv/bin/activate
 نصب وابستگی‌ها
 
 با استفاده از pip وابستگی‌های مورد نیاز را نصب کنید:
 
-bash
-Copy code
+
 pip install -r requirements.txt
 اگر requirements.txt وجود ندارد، به صورت دستی وابستگی‌ها را نصب کنید:
 
-bash
-Copy code
+
 pip install django psycopg2-binary openpyxl
 پیکربندی پایگاه داده
 
@@ -49,22 +44,18 @@ DATABASES = {
 
 برای راه‌اندازی ساختار پایگاه داده، مایگریشن‌ها را اجرا کنید:
 
-bash
-Copy code
+
 python manage.py migrate
 ایجاد کاربر مدیر
 
 برای دسترسی به پنل مدیریت Django، یک کاربر مدیر ایجاد کنید:
 
-bash
-Copy code
+
 python manage.py createsuperuser
 اجرای سرور توسعه
 
 سرور توسعه Django را راه‌اندازی کنید:
 
-bash
-Copy code
 python manage.py runserver
 مرورگر خود را باز کنید و به http://127.0.0.1:8000/ بروید تا به اپلیکیشن دسترسی پیدا کنید.
 
