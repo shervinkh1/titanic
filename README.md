@@ -67,8 +67,3 @@ python manage.py runserver
 - روی هاست دستگاه و همچنین روی آدرس آی پی دستگاه  ``python manage.py runserver 0.0.0.0:8000``
 
 
-### سرور توسعه Django را راه‌اندازی کنید:
-
->python manage.py runserver
-مرورگر خود را باز کنید و به http://127.0.0.1:8000/ بروید تا به اپلیکیشن دسترسی پیدا کنید.
-
