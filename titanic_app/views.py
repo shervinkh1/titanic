@@ -78,5 +78,5 @@ def delete_titanic(request, pk):
     return redirect('manage_titanic')
 
 def titanic_data_grid(request):
-    titanic_data = Titanic.objects.all()
+    titanic_data = Titanic.objects.all().order_by('passenger_id')
     return render(request, 'titanic_data_grid.html', {'titanic_data': titanic_data})
