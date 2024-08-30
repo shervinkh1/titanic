@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'titanic',  # نام دیتابیس
         'USER': 'postgres',       # نام کاربری دیتابیس
-        'PASSWORD': 'sh8895367380',   # رمز عبور دیتابیس
+        'PASSWORD': '********',   # رمز عبور دیتابیس
         'HOST': 'localhost',           # آدرس سرور دیتابیس
         'PORT': '5432',                # پورت پیش‌فرض PostgreSQL
     }
