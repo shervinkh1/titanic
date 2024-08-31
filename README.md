@@ -9,10 +9,13 @@ git clone https://github.com/shervinkh1/titanic.git
 ```
 
 2: محیط مجازی را بر روی دستگاه خود بسازید برای ایزوله کردن پروژه (از قبل برای شما نصب باشد virtualenv دقت کنید که پکیج)  ``virtualenv venv``
+```
+python -m venv venv
+```
 
 3: فعال کردن محیط مجازی 
 
-- اگر سیستم عامل شما ویندوز است : ``source venv/bin/activate``
+- اگر سیستم عامل شما ویندوز است : ``source venv/scripts/activate``
 - اگر سیستم عامل شما لینوکس یا مک است : ``. venv/bin/activate``
 
 ## نصب پکیج ها
